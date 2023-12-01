@@ -8,7 +8,8 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate, CLLocationManagerDelegate{
+
+class WeatherViewController: UIViewController{
  
 
     @IBOutlet weak var conditionImageView: UIImageView!
@@ -30,6 +31,14 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         searchTextField.delegate = self
     }
     
+    
+    @IBAction func locationButtonPressed(_ sender: UIButton) {
+        locationManager.requestLocation()
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension WeatherViewController:UITextFieldDelegate{
     @IBAction func searchButton(_ sender: UIButton) {
         searchTextField.endEditing(true)// It is for removing the keyboead from the screen
     }
@@ -61,7 +70,11 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         
         
     }
-    
+}
+
+//MARK: - WeatherManagerDelegate
+
+extension WeatherViewController : WeatherManagerDelegate{
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async { [self] in
         tempuratureLabel.text    = weather.temperatureString
@@ -72,20 +85,21 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         
     }
     
-    
-    @IBAction func locationButtonPressed(_ sender: UIButton) {
-        locationManager.requestLocation()
-    }
-    
     func didFailWithError(error: Error) {
         print(error)
     }
+
+}
+
+//MARK: - CLLocationManagerDelegate
+
+extension WeatherViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last{
             locationManager.stopUpdatingLocation() //this will be needed when you press location button. I did not get it. Maybe, it will be understandable in the future
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
-            weatherManager.fetchData(lat: lat, lon: lon)  
+            weatherManager.fetchData(lat: lat, lon: lon)
         }
     }
     
@@ -93,4 +107,3 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         print(error)
     }
 }
-
