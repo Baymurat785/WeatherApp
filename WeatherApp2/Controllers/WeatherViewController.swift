@@ -12,10 +12,14 @@ import CoreLocation
 class WeatherViewController: UIViewController{
  
 
+    @IBOutlet weak var segmnetControl: UISegmentedControl! //Adding segment control
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var tempuratureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var tempSymbol: UILabel!
+    
+    var celsius: Double = 0
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
@@ -35,6 +39,28 @@ class WeatherViewController: UIViewController{
     @IBAction func locationButtonPressed(_ sender: UIButton) {
         locationManager.requestLocation()
     }
+    
+    //Adding segment control
+    @IBAction func segmentControlPressed(_ sender: UISegmentedControl) {
+        switch segmnetControl.selectedSegmentIndex{
+        case 0:
+            tempuratureLabel.text = String(format: "%.1f", celsius)
+            tempSymbol.text = "C"
+            break
+        case 1:
+            let fahrenheit = (celsius * 9/5) + 32
+            tempuratureLabel.text = String(format: "%.1f", fahrenheit)
+            tempSymbol.text = "F"
+            break
+            
+        default:
+            
+            break
+        }
+    }
+    
+    
+    
 }
 
 //MARK: - UITextFieldDelegate
@@ -81,6 +107,7 @@ extension WeatherViewController : WeatherManagerDelegate{
         cityLabel.text           = weather.cityName
             conditionImageView.image = UIImage(systemName: weather.conditonName)  //This will help for setting image for imageView
 //            UIImage(named: weather.conditonName)
+            celsius = weather.temperature
         }
         
     }

@@ -18,12 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xia-Ee-oB5">
-                                <rect key="frame" x="79.000000000000014" y="59" width="232.33333333333337" height="34"/>
+                                <rect key="frame" x="79" y="59" width="233" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uc4-GK-jqm">
-                                <rect key="frame" x="319.33333333333331" y="61" width="49.666666666666686" height="34.333333333333343"/>
+                                <rect key="frame" x="320" y="61" width="49" height="34.333333333333343"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
@@ -82,6 +82,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yjw-5A-E7c">
+                                <rect key="frame" x="111" y="101" width="169" height="32"/>
+                                <segments>
+                                    <segment title="Celsius"/>
+                                    <segment title="Fahrenheit"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentControlPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="Oyb-Kq-lgB"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -93,11 +103,15 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JTE-6O-UeJ" secondAttribute="trailing" constant="128" id="FFZ-DN-oKP"/>
                             <constraint firstItem="nZ1-1P-FSQ" firstAttribute="centerX" secondItem="FXm-oO-EO6" secondAttribute="centerX" id="G9j-l2-DWI"/>
                             <constraint firstItem="JTE-6O-UeJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="112" id="Hb2-Ac-RkG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yjw-5A-E7c" secondAttribute="trailing" constant="113" id="Mm6-BI-MUG"/>
                             <constraint firstItem="xia-Ee-oB5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NoR-O0-Hhh"/>
                             <constraint firstItem="nZ1-1P-FSQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77" id="Qu8-La-p14"/>
                             <constraint firstItem="FXm-oO-EO6" firstAttribute="top" secondItem="nZ1-1P-FSQ" secondAttribute="bottom" constant="8" symbolic="YES" id="WEy-Lg-jXf"/>
+                            <constraint firstItem="yjw-5A-E7c" firstAttribute="leading" secondItem="sc7-Ec-vnB" secondAttribute="trailing" constant="40" id="fWv-aw-o0x"/>
+                            <constraint firstItem="yjw-5A-E7c" firstAttribute="centerX" secondItem="xia-Ee-oB5" secondAttribute="centerX" id="h5V-RQ-I2F"/>
                             <constraint firstItem="sc7-Ec-vnB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-13" id="iUj-Io-z8V"/>
                             <constraint firstItem="nZ1-1P-FSQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jtd-hY-8Ek"/>
+                            <constraint firstItem="yjw-5A-E7c" firstAttribute="top" secondItem="xia-Ee-oB5" secondAttribute="bottom" constant="8" id="nZK-Nz-RuA"/>
                             <constraint firstItem="sc7-Ec-vnB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="13" id="oBd-2E-1lh"/>
                             <constraint firstItem="xia-Ee-oB5" firstAttribute="leading" secondItem="sc7-Ec-vnB" secondAttribute="trailing" constant="8" id="shr-Mt-9XK"/>
                             <constraint firstItem="JTE-6O-UeJ" firstAttribute="top" secondItem="FXm-oO-EO6" secondAttribute="bottom" constant="7.3333333333333144" id="yGM-wW-s7A"/>
@@ -108,6 +122,8 @@
                         <outlet property="cityLabel" destination="JTE-6O-UeJ" id="KZN-Oo-hS8"/>
                         <outlet property="conditionImageView" destination="nZ1-1P-FSQ" id="zH6-jd-h4p"/>
                         <outlet property="searchTextField" destination="xia-Ee-oB5" id="85j-01-5Gk"/>
+                        <outlet property="segmnetControl" destination="yjw-5A-E7c" id="fbQ-8Z-XPg"/>
+                        <outlet property="tempSymbol" destination="A2S-sC-e19" id="hp2-6z-zhE"/>
                         <outlet property="tempuratureLabel" destination="atB-jb-0u3" id="Exn-gr-h0m"/>
                     </connections>
                 </viewController>
